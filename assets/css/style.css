@@ -1,0 +1,23 @@
+.navbar {
+    background-color: #072541;
+}
+.navbar .container a span {
+    color: rgb(255, 153, 0);
+}
+
+#home .container h1 span {
+    color: rgb(255, 153, 0);
+}
+
+#home .container h4 span {
+    color: rgb(255, 153, 0);
+}
+
+#home .container h5 span {
+    color: rgb(255, 153, 0);
+}
+
+.paket {
+    background-color: #072541;
+}
+

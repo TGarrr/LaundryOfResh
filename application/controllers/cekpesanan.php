@@ -1,13 +1,13 @@
 <?php
 
-class Home extends CI_Controller
+class cekPesanan extends CI_Controller
 {
 
     public function index()
     {
         $this->load->view('frontend/header');
         $this->load->view('frontend/navbar');
-        $this->load->view('frontend/index');
-        $this->load->view('frontend/footer');
+        $this->load->view('frontend/cekpesanan');
+        // $this->load->view('frontend/footer');
     }
 }

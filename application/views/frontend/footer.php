@@ -1,4 +1,4 @@
-    <footer class=" text-white p-4" style="background-color: #072541;">
+    <footer class=" text-white p-4 mt-n5 " style="background-color: #072541;">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-6 my-3">
