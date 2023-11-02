@@ -4,7 +4,8 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa fa-snowflake-o"></i>
+            <!-- <i class="fas fa fa-snowflake-o"></i> -->
+            <img src="<?= base_url('assets/') ?>img/logo.jpg" alt="" style="height: 60px;">
         </div>
         <div class="sidebar-brand-text mx-3">Laundry OfResh</div>
     </a>
@@ -40,6 +41,13 @@
             <span>Member</span></a>
     </li>
 
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa fa-user-plus"></i>
+            <span>Data Paket</span></a>
+    </li>
+
     <!-- Divider -->
     <!-- <hr class="sidebar-divider"> -->
 
@@ -60,7 +68,7 @@
 
     <li class="nav-item">
         <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa fa-mail-reply-all" style=" color:red"></i>
+            <i class="fas fa-fw fa fa-mail-reply-all"></i>
             <span>Log Out</span></a>
     </li>
 
