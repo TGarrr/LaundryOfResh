@@ -21,7 +21,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= base_url('admin'); ?>">
             <i class="fas fa-fw fa fa-area-chart"></i>
             <span>Dashboard</span></a>
     </li>
@@ -36,7 +36,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="<?= base_url('konsumen'); ?>">
             <i class="fas fa-fw fa fa-user-plus"></i>
             <span>Member</span></a>
     </li>
@@ -67,7 +67,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?= base_url('auth/logout');  ?>" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-fw fa fa-mail-reply-all"></i>
             <span>Log Out</span></a>
     </li>

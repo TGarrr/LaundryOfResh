@@ -1,11 +1,11 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-lg-6 justify-content-x">
             <?= $this->session->flashdata('pesan'); ?>
         </div>
-    </div> -->
+    </div>
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
             <div class="col-md-4">
