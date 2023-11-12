@@ -106,6 +106,7 @@ $autoload['helper'] = array('url', 'file', 'admin');
 */
 $autoload['config'] = array();
 
+
 /*
 | -------------------------------------------------------------------
 |  Auto-load Language files

@@ -93,7 +93,7 @@ class auth extends CI_Controller
     //     if ($this->form_validation->run() == false) {
     //         $data['judul'] = 'Registrasi Member';
     //         $this->load->view('templates_admin/header', $data);
-    //         $this->load->view('admin/registrasi');
+    //         $this->load->view('login/registrasi');
     //         // $this->load->view('templates_admin/footer');
     //     } else {
     //         $email = $this->input->post('email', true);

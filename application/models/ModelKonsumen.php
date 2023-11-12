@@ -28,4 +28,24 @@ class ModelKonsumen extends CI_Model
     {
         return $this->db->get('konsumen');
     }
+
+    public function KonsumenWhere($where)
+    {
+        return $this->db->get_where('konsumen', $where);
+    }
+
+    public function simpanKonsumen($data = null)
+    {
+        $this->db->insert('konsumen', $data);
+    }
+
+    public function updateKonsumen($data = null, $where = null)
+    {
+        $this->db->update('konsumen', $data, $where);
+    }
+
+    public function hapusKonsumen($where = null)
+    {
+        $this->db->delete('konsumen', $where);
+    }
 }
