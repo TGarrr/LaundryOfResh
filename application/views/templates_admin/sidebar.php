@@ -43,7 +43,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="<?= base_url('paket'); ?>">
             <i class="fas fa-fw fa fa-user-plus"></i>
             <span>Data Paket</span></a>
     </li>

@@ -86,8 +86,8 @@
 
 
 <!-- Modal Ubah konsumen baru -->
-<?php
-foreach ($data as $row) { ?>
+<!-- <?php
+        foreach ($data as $row) { ?>
     <div class="modal fade" id="ubahKonsumen <?= $row['id_konsumen']; ?>" tabindex="-1" role="dialog" aria-labelledby="konsumenBaruModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -120,6 +120,6 @@ foreach ($data as $row) { ?>
             </div>
         </div>
     </div>
-<?php } ?>
+<?php } ?> -->
 
 <!-- End of Modal Ubah Mneu -->
