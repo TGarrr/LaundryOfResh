@@ -58,10 +58,17 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?= base_url('transaksi'); ?>">
             <i class="fas fa-fw fa-dollar"></i>
             <span>Transaksi</span></a>
     </li>
+
+    <!-- Nav Item - Tables -->
+    <!-- <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('transaksi/riwayat'); ?>">
+            <i class="fas fa-fw fa-dollar"></i>
+            <span>Riwayat Transaksi</span></a>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">
