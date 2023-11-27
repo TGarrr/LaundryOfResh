@@ -3,11 +3,11 @@
 date_default_timezone_set('Asia/Jakarta');
 $tgl_masuk = date('Y-m-d h:i:s');
 ?>
-<div class="container-fluid">
+<div class="container-fluid" id="table-datatable">
 
-    <?= $this->session->flashdata('pesan'); ?>
+    <?= $this->session->flashdata('pesanTrs'); ?>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" id="table-datatable">
             <?php if (validation_errors()) { ?>
                 <div class="alert alert-danger" role="alert">
                     <?= validation_errors(); ?>
@@ -20,33 +20,55 @@ $tgl_masuk = date('Y-m-d h:i:s');
                         <th scope="col" style="color: red;">#</th>
                         <th scope="col">Kode Transakasi</th>
                         <th scope="col">Tanggal Masuk</th>
+                        <th scope="col">Nama Customer</th>
+                        <th scope="col">Paket</th>
+                        <th scope="col">Berat (KG)</th>
+                        <th scope="col">Grand Total</th>
                         <th scope="col">Tanggal Ambil </th>
-                        <th scope="col">Berat</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Status Bayar </th>
                         <th scope="col">Status</th>
                         <th scope="col">Pilihan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <?php
-                            $no = 1;
-                            foreach ($data as $row) { ?>
+                    <?php
+                    $no = 1;
+                    foreach ($data as $row) { ?>
                         <tr>
                             <th scape="row"><?= $no++; ?></th>
-                            <td><?= $row['kode_Transaksi']; ?></td>
+                            <td><?= $row['kode_transaksi']; ?></td>
                             <td><?= $row['tgl_masuk']; ?></td>
-                            <td><?= $row['tgl_ambil']; ?></td>
+                            <td><?= $row['nama_konsumen']; ?></td>
+                            <td><?= $row['nama_paket']; ?></td>
                             <td><?= $row['berat']; ?></td>
-                            <td><?= $row['grand_total']; ?></td>
+                            <td><?= 'Rp' . number_format($row['grand_total']); ?></td>
+                            <td><?= $row['tgl_ambil']; ?></td>
                             <td><?= $row['bayar']; ?></td>
-                            <td><?= $row['status']; ?></td>
                             <td>
-                                <!-- <button type="button" class="badge badge-primary" data-toggle="modal" data-target="#ubahpaket <?= $row['id_paket']; ?>"><i class=" fas fa-edit"></i> Edit</button> -->
-                    <a href="<?= base_url('transaksi/updatePaket/') . $row['id_paket']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Edit</a>
-                    <a href="<?= base_url('transaksi/hapusPaket/') . $row['id_paket']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= $judul . ' ' . $row['kode_paket']; ?> ?');" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
-                    </td>
-                    </tr>
-                <?php } ?> -->
+                                <?php
+                                if ($row['status'] == "Baru") { ?>
+                                    <select name="status" class="badge badge-danger status">
+                                        <option value="<?= $row['status']; ?>Baru" selected>Baru</option>
+                                        <option value="<?= $row['status']; ?>Proses">Proses</option>
+                                        <option value="<?= $row['status']; ?>Selesai">Selesai</option>
+                                    </select>
+                                <?php } else if ($row['status'] == "Proses") { ?>
+                                    <select name="status" class="badge badge-warning status">
+                                        <option value="<?= $row['status']; ?>Baru">Baru</option>
+                                        <option value="<?= $row['status']; ?>Proses" selected>Proses</option>
+                                        <option value="<?= $row['status']; ?>Selesai">Selesai</option>
+                                    </select>
+                                <?php } else { ?>
+                                    <button class="btn btn-success btn-sm dropdown-toggle">Selesai</button>
+                                <?php }
+                                ?>
+                            </td>
+                            <td>
+                                <a href="<?= base_url('transaksi/hapusPaket/') . $row['id_paket']; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Detail</a>
+                                <a href="<?= base_url('transaksi/updateTransaksi/') . $row['kode_transaksi']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Edit</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -106,9 +128,13 @@ $tgl_masuk = date('Y-m-d h:i:s');
                     <div class="form-group">
                         <input type="number" class="form-control form-control-user" name="grand_total" id="grand_total" placeholder="Grand Total" readonly>
                     </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-user" name="tgl_ambil" placeholder="Tanggal ambil" value="<?= $tgl_ambil; ?>" readonly>
+                    </div>
                     <div class="form-group" hidden>
                         <input type="text" class="form-control form-control-user" name="tgl_masuk" placeholder="Tanggal Masuk" value="<?= $tgl_masuk; ?>" readonly>
                     </div>
+
                     <div class="form-group">
                         <select class="form-control form-control-user" name="bayar">
                             <option value="">- Pilih Status Bayar -</option>
@@ -130,30 +156,5 @@ $tgl_masuk = date('Y-m-d h:i:s');
 </div>
 
 <!-- Mengambil Harga dari Table Paket Menggunakan JQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-    $('#paket').change(function() {
-        var kode_paket = $(this).val();
 
-        $.ajax({
-            url: '<?= base_url('transaksi/getHargaPaket') ?>',
-            data: {
-                kode_paket: kode_paket
-            },
-            method: 'post',
-            dataType: 'JSON',
-            success: function(hasil) {
-                $('#harga').val(hasil.harga_paket);
-            }
-        });
-    });
-
-    // membuat grand total otomatis 
-    $('#berat').keyup(function() {
-        var berat = $(this).val();
-        var harga = document.getElementById('harga').value;
-        $('#grand_total').val(berat * harga);
-
-    });
-</script>
 <!-- End of Modal Tambah Mneu -->

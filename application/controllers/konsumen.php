@@ -13,7 +13,7 @@ class konsumen extends CI_Controller
 
     public function index()
     {
-        $data['judul'] = 'Data Customer';
+        $data['judul'] = 'Data Konsumen';
         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
         $data['kode_konsumen'] = $this->ModelKonsumen->generate_kode_konsumen();
         $data['data'] = $this->ModelKonsumen->getAllDataKonsumen()->result_array();
@@ -51,8 +51,8 @@ class konsumen extends CI_Controller
             // lalu di masukan ke tabel konsumen
             $query = $this->ModelKonsumen->simpanKonsumen($data);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
-            if ($query = true) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');
+            if ($query) {
+                $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');
                 redirect('konsumen');
             }
         }
@@ -62,7 +62,7 @@ class konsumen extends CI_Controller
     {
         $where = ['id_konsumen' => $this->uri->segment(3)];
         $this->ModelKonsumen->hapusKonsumen($where);
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Hapus!!! </div>');
+        $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Hapus!!! </div>');
         redirect('konsumen');
     }
 
@@ -107,8 +107,8 @@ class konsumen extends CI_Controller
             // lalu di masukan ke tabel konsumen
             $query = $this->ModelKonsumen->updateKonsumen($data, ['id_konsumen' => $this->input->post('id_konsumen')]);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
-            if ($query = true) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');
+            if ($query) {
+                $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');
                 redirect('konsumen');
             }
         }

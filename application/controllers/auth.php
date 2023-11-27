@@ -48,11 +48,11 @@ class auth extends CI_Controller
                 $this->session->set_userdata($data);
                 redirect('admin');
             } else {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>');
+                $this->session->set_flashdata('pesanLgn', '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>');
                 redirect('auth');
             }
         } else {
-            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Email tidak terdaftar!!</div>');
+            $this->session->set_flashdata('pesanLgn', '<div class="alert alert-danger alert-message" role="alert">Email tidak terdaftar!!</div>');
             redirect('auth');
         }
     }
@@ -116,7 +116,7 @@ class auth extends CI_Controller
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('id_user');
 
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Anda telah logout!!</div>');
+        $this->session->set_flashdata('pesanLgn', '<div class="alert alert-success alert-message" role="alert">Anda telah logout!!</div>');
         redirect('auth');
     }
 

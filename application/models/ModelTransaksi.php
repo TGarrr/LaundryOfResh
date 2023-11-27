@@ -29,8 +29,32 @@ class ModelTransaksi extends CI_Model
         return $kodejadi;
     }
 
+    public function TransaksiWhere($where)
+    {
+        return $this->db->get_where('transaksi', $where);
+    }
+
+    // memanggil semua data transaksi
+    public function getAllDataTransaksi()
+    {
+        $this->db->join('konsumen', 'transaksi.kode_konsumen = konsumen.kode_konsumen');
+        $this->db->join('paket', 'transaksi.kode_paket = paket.kode_paket');
+        return $this->db->get('transaksi');
+    }
+
     public function simpanTransaksi($data = null)
     {
         $this->db->insert('transaksi', $data);
+    }
+
+    public function updateStatus($kode_transaksi = null, $status = null)
+    {
+
+        $this->db->update('transaksi', $kode_transaksi, $status);
+    }
+
+    public function updateTransaksi($data = null, $where = null)
+    {
+        $this->db->update('transaksi', $data, $where);
     }
 }

@@ -47,9 +47,66 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+<!-- jquerrry -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+    $(document).ready(function() {
+        $("#table-datatable").dataTable();
+    });
+    $('.alert-message').alert().delay(3500).slideUp('slow');
+</script>
 
+<script>
+    $('#paket').change(function() {
+        var kode_paket = $(this).val();
 
+        $.ajax({
+            url: '<?= base_url('transaksi/getHargaPaket') ?>',
+            data: {
+                kode_paket: kode_paket
+            },
+            method: 'post',
+            dataType: 'JSON',
+            success: function(hasil) {
+                $('#harga').val(hasil.harga_paket);
+            }
+        });
+    });
+
+    // membuat grand total otomatis 
+    $('#berat').keyup(function() {
+        var berat = $(this).val();
+        var harga = document.getElementById('harga').value;
+        $('#grand_total').val(berat * harga);
+
+    });
+
+    // Status
+    $('.status').change(function() {
+        var status = $(this).val();
+        // melakukan pemecahan STRING
+        // ada dua parameter di mulai dari 0 kemudian Lengh/Panjangnya sesuai kt
+        var kt = status.substr(0, 13);
+        // stt(status) di mulai dari 13 lnjt lengh yg mau kita ambil yaitu 10
+        var stt = status.substr(13, 10);
+
+        // proses AJAX
+        $.ajax({
+            url: "<? base_url('transaksi/updateStatus') ?>",
+            method: "post",
+            data: {
+                kt: kt,
+                stt: stt
+            }
+        });
+        location.reload();
+    });
+</script>
 </body>
 
 </html>

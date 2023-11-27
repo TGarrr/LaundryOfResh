@@ -1,9 +1,9 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <?= $this->session->flashdata('pesan'); ?>
+    <?= $this->session->flashdata('pesanPkt'); ?>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" id="table-datatable">
             <?php if (validation_errors()) { ?>
                 <div class="alert alert-danger" role="alert">
                     <?= validation_errors(); ?>

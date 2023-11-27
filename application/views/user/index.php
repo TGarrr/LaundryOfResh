@@ -2,8 +2,8 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-lg-6 justify-content-x">
-            <?= $this->session->flashdata('pesan'); ?>
+        <div class="col-lg-6 justify-content-x" id="table-datatable">
+            <?= $this->session->flashdata('pesanUsr'); ?>
         </div>
     </div>
     <div class="card mb-3" style="max-width: 540px;">

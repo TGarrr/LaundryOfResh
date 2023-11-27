@@ -60,7 +60,7 @@ class User extends CI_Controller
 
             if ($upload_image) {
                 $config['upload_path'] = './assets/img/profile/';
-                $config['allowed_types'] = 'gif|jpg|png';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']     = '3000';
                 $config['max_width'] = '1024';
                 $config['max_height'] = '1000';
@@ -84,7 +84,7 @@ class User extends CI_Controller
             $this->db->where('email', $email);
             $this->db->update('user');
 
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Profil Berhasil diubah </div>');
+            $this->session->set_flashdata('pesanUsr', '<div class="alert alert-success alert-message" role="alert">Profil Berhasil diubah </div>');
             redirect('user');
         }
     }
@@ -120,11 +120,11 @@ class User extends CI_Controller
             $pwd_skrg = $this->input->post('password_sekarang', true);
             $pwd_baru = $this->input->post('password_baru1', true);
             if (!password_verify($pwd_skrg, $data['user']['password'])) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password Saat ini Salah!!! </div>');
+                $this->session->set_flashdata('pesanUsr', '<div class="alert alert-danger alert-message" role="alert">Password Saat ini Salah!!! </div>');
                 redirect('user/ubahPassword');
             } else {
                 if ($pwd_skrg == $pwd_baru) {
-                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password Baru tidak boleh sama dengan password saat ini!!! </div>');
+                    $this->session->set_flashdata('pesanUsr', '<div class="alert alert-danger alert-message" role="alert">Password Baru tidak boleh sama dengan password saat ini!!! </div>');
                     redirect('user/ubahPassword');
                 } else {
                     //password ok
@@ -134,7 +134,7 @@ class User extends CI_Controller
                     $this->db->where('email', $this->session->userdata('email'));
                     $this->db->update('user');
 
-                    $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Password Berhasil diubah</div>');
+                    $this->session->set_flashdata('pesanUsr', '<div class="alert alert-success alert-message" role="alert">Password Berhasil diubah</div>');
                     redirect('user/ubahPassword');
                 }
             }

@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <?= $this->session->flashdata('pesan'); ?>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6" id="table-datatable">
             <?php if (validation_errors()) { ?>
                 <div class="alert alert-danger" role="alert">
                     <?= validation_errors(); ?>

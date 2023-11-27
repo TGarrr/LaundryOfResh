@@ -46,7 +46,7 @@ class paket extends CI_Controller
             $query = $this->ModelPaket->simpanPaket($data);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Tambahkan!!! </div>');
+                $this->session->set_flashdata('pesanPkt', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Tambahkan!!! </div>');
                 redirect('paket');
             }
         }
@@ -56,7 +56,7 @@ class paket extends CI_Controller
     {
         $where = ['id_paket' => $this->uri->segment(3)];
         $this->ModelPaket->hapusPaket($where);
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Hapus!!! </div>');
+        $this->session->set_flashdata('pesanPkt', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Hapus!!! </div>');
         redirect('paket');
     }
 
@@ -95,7 +95,7 @@ class paket extends CI_Controller
             $query = $this->ModelPaket->updatePaket($data, ['id_paket' => $this->input->post('id_paket')]);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
-                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Update!!! </div>');
+                $this->session->set_flashdata('pesanPkt', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Update!!! </div>');
                 redirect('Paket');
             }
         }

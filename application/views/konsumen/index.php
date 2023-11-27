@@ -1,21 +1,21 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <?= $this->session->flashdata('pesan'); ?>
+    <?= $this->session->flashdata('pesanKsn'); ?>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" id="table-datatable">
             <?php if (validation_errors()) { ?>
                 <div class="alert alert-danger" role="alert">
                     <?= validation_errors(); ?>
                 </div>
             <?php } ?>
-            <a href="" class="btn btn-warning mb-3" data-toggle="modal" data-target="#konsumenBaruModal"> + Tambah Customer</a>
+            <a href="" class="btn btn-warning mb-3" data-toggle="modal" data-target="#konsumenBaruModal"> + Tambah Konsumen</a>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col" style="color: red;">#</th>
-                        <th scope="col">Kode Customer</th>
-                        <th scope="col">Nama Customer</th>
+                        <th scope="col">Kode Konsumen</th>
+                        <th scope="col">Nama Konsumen</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Nomor Telp</th>
                         <th scope="col">Pilihan</th>
@@ -54,7 +54,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="konsumenBaruModalLabel">Tambah Customer</h5>
+                <h5 class="modal-title" id="konsumenBaruModalLabel">Tambah Konsumen</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -62,10 +62,10 @@
             <form method="post" action="<?= base_url('konsumen'); ?>">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="kode_konsumen" name="kode_konsumen" value="<?= $kode_konsumen; ?>" placeholder="Masukkan Kode Customer" readonly>
+                        <input type="text" class="form-control form-control-user" id="kode_konsumen" name="kode_konsumen" value="<?= $kode_konsumen; ?>" placeholder="Masukkan Kode Konsumen " readonly>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="nama_konsumen" name="nama_konsumen" placeholder="Masukkan Nama Customer" required>
+                        <input type="text" class="form-control form-control-user" id="nama_konsumen" name="nama_konsumen" placeholder="Masukkan Nama Konsumen " required>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="alamat_konsumen" name="alamat_konsumen" placeholder="Masukkan Alamat" required>

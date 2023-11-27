@@ -38,7 +38,7 @@
     <li class="nav-item">
         <a class="nav-link" href="<?= base_url('konsumen'); ?>">
             <i class="fas fa-fw fa fa-user-plus"></i>
-            <span>Member</span></a>
+            <span>konsumen</span></a>
     </li>
 
     <!-- Nav Item - Charts -->
