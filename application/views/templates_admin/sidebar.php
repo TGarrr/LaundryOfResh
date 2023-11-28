@@ -37,14 +37,14 @@
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="<?= base_url('konsumen'); ?>">
-            <i class="fas fa-fw fa fa-user-plus"></i>
+            <i class="fa fa-address-book"></i>
             <span>konsumen</span></a>
     </li>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="<?= base_url('paket'); ?>">
-            <i class="fas fa-fw fa fa-user-plus"></i>
+            <i class="fa fa-database"></i>
             <span>Data Paket</span></a>
     </li>
 

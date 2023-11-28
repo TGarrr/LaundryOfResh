@@ -64,7 +64,7 @@ $tgl_masuk = date('Y-m-d h:i:s');
                                 ?>
                             </td>
                             <td>
-                                <a href="<?= base_url('transaksi/hapusPaket/') . $row['id_paket']; ?>" class="badge badge-danger"><i class="fas fa-trash"></i> Detail</a>
+                                <a href="<?= base_url('transaksi/detailTransaksi/') . $row['kode_transaksi']; ?>" class="badge badge-warning"><i class="fa fa-external-link-square"></i> Detail</a>
                                 <a href="<?= base_url('transaksi/updateTransaksi/') . $row['kode_transaksi']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Edit</a>
                             </td>
                         </tr>
@@ -128,13 +128,9 @@ $tgl_masuk = date('Y-m-d h:i:s');
                     <div class="form-group">
                         <input type="number" class="form-control form-control-user" name="grand_total" id="grand_total" placeholder="Grand Total" readonly>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control-user" name="tgl_ambil" placeholder="Tanggal ambil" value="<?= $tgl_ambil; ?>" readonly>
-                    </div>
                     <div class="form-group" hidden>
                         <input type="text" class="form-control form-control-user" name="tgl_masuk" placeholder="Tanggal Masuk" value="<?= $tgl_masuk; ?>" readonly>
                     </div>
-
                     <div class="form-group">
                         <select class="form-control form-control-user" name="bayar">
                             <option value="">- Pilih Status Bayar -</option>

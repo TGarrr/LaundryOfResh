@@ -67,12 +67,12 @@ class transaksi extends CI_Controller
 
     public function updateStatus()
     {
-        $kode_transaksi = $this->input->post('kt');
-        $status = $this->input->post('stt');
+        $kode_transaksi = $this->input->post('kode_transaksi');
+        $status = $this->input->post('status');
         $tgl_ambil = date('Y-m-d');
 
         if ($status == "Baru" or $status == "Proses") {
-            $this->ModalTransaksi->updateStatus($kode_transaksi, $status);
+            $this->ModalTransaksi->updateStatus([$kode_transaksi, $status]);
         } else {
             $this->ModalTransaksi->updateStatus1($kode_transaksi, $status, $tgl_ambil);
         }
@@ -125,5 +125,29 @@ class transaksi extends CI_Controller
                 redirect('transaksi');
             }
         }
+    }
+
+    public function detailTransaksi($kode_transaksi)
+    {
+
+        $data['konsumen'] = $this->db->get('konsumen')->result();
+        $data['paket'] = $this->db->get('paket')->result();
+        $data['kode_transaksi'] = $this->ModelTransaksi->generateKode();
+        // $data['data'] = $this->ModelTransaksi->getAllDataTransaksi()->result_array();
+        $data['transaksi'] = $this->ModelTransaksi->TransaksiWhere(['kode_transaksi' => $this->uri->segment(3)])->result_array();
+        $data['detailTransaksi'] = $this->ModelTransaksi->detailTransaksi(['kode_transaksi' => $this->uri->segment(3)])->result_array();
+        // var_dump($data['detailTransaksi']);
+
+        $this->load->library('dompdf_gen');
+        $this->load->view('transaksi/detailTransaksi', $data);
+
+        $paper_size = 'A5';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("Detail Transaksi", array('Attachment' => 0));
     }
 }
