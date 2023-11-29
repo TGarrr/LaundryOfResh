@@ -59,7 +59,7 @@ class konsumen extends CI_Controller
 
     public function hapusKonsumen()
     {
-        $where = ['id_konsumen' => $this->uri->segment(3)];
+        $where = ['kode_konsumen' => $this->uri->segment(3)];
         $this->ModelKonsumen->hapusKonsumen($where);
         $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Hapus!!! </div>');
         redirect('konsumen');
@@ -71,7 +71,7 @@ class konsumen extends CI_Controller
         $data['judul'] = 'Ubah Data Customer';
         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
         $data['kode_konsumen'] = $this->ModelKonsumen->generate_kode_konsumen();
-        $data['konsumen'] = $this->ModelKonsumen->KonsumenWhere(['id_konsumen' => $this->uri->segment(3)])->result_array();
+        $data['konsumen'] = $this->ModelKonsumen->KonsumenWhere(['kode_konsumen' => $this->uri->segment(3)])->result_array();
 
 
         $this->form_validation->set_rules('kode_konsumen', 'Kode Customer', 'required', [
@@ -104,7 +104,7 @@ class konsumen extends CI_Controller
                 'no_telp'           => $this->input->post('no_telp')
             ];
             // lalu di masukan ke tabel konsumen
-            $query = $this->ModelKonsumen->updateKonsumen($data, ['id_konsumen' => $this->input->post('id_konsumen')]);
+            $query = $this->ModelKonsumen->updateKonsumen($data, ['kode_konsumen' => $this->input->post('kode_konsumen')]);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
                 $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');

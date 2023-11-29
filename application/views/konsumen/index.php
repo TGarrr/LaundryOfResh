@@ -32,9 +32,9 @@
                             <td><?= $row['alamat_konsumen']; ?></td>
                             <td><?= $row['no_telp']; ?></td>
                             <td>
-                                <!-- <button type="button" class="badge badge-primary" data-toggle="modal" data-target="#ubahKonsumen <?= $row['id_konsumen']; ?>"><i class=" fas fa-edit"></i> Edit</button> -->
-                                <a href="<?= base_url('konsumen/updateKonsumen/') . $row['id_konsumen']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="<?= base_url('konsumen/hapusKonsumen/') . $row['id_konsumen']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= $judul . ' ' . $row['kode_konsumen']; ?> ?');" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
+
+                                <a href="<?= base_url('konsumen/updateKonsumen/') . $row['kode_konsumen']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="<?= base_url('konsumen/hapusKonsumen/') . $row['kode_konsumen']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= $judul . ' ' . $row['kode_konsumen']; ?> ?');" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>

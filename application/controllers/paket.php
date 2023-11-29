@@ -54,7 +54,7 @@ class paket extends CI_Controller
 
     public function hapusPaket()
     {
-        $where = ['id_paket' => $this->uri->segment(3)];
+        $where = ['kode_paket' => $this->uri->segment(3)];
         $this->ModelPaket->hapusPaket($where);
         $this->session->set_flashdata('pesanPkt', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Hapus!!! </div>');
         redirect('paket');
@@ -66,7 +66,7 @@ class paket extends CI_Controller
         $data['judul'] = 'Ubah Data Paket';
         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
         $data['kode_paket'] = $this->ModelPaket->generate_kode_paket();
-        $data['paket'] = $this->ModelPaket->PaketWhere(['id_Paket' => $this->uri->segment(3)])->result_array();
+        $data['paket'] = $this->ModelPaket->PaketWhere(['kode_Paket' => $this->uri->segment(3)])->result_array();
 
 
         $this->form_validation->set_rules('nama_paket', 'Nama Paket', 'required', [
@@ -92,7 +92,7 @@ class paket extends CI_Controller
                 'harga_paket'   => $this->input->post('harga_paket')
             ];
             // lalu di masukan ke tabel Paket
-            $query = $this->ModelPaket->updatePaket($data, ['id_paket' => $this->input->post('id_paket')]);
+            $query = $this->ModelPaket->updatePaket($data, ['kode_paket' => $this->input->post('kode_paket')]);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
                 $this->session->set_flashdata('pesanPkt', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Update!!! </div>');

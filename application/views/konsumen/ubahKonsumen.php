@@ -14,7 +14,6 @@
                 <form action="<?= base_url('konsumen/updateKonsumen'); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="hidden" name="id_konsumen" id="id_konsumen" value="<?php echo $ksn['id_konsumen']; ?>">
                             <input type="text" class="form-control form-control-user" id="kode_konsumen" name="kode_konsumen" value="<?= $ksn['kode_konsumen']; ?>" placeholder="Masukkan Kode Customer" readonly>
                         </div>
                         <div class="form-group">

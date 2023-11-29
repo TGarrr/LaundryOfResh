@@ -25,30 +25,20 @@
                 <thead class="bg-info">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Nama Paket</th>
+                        <th scope="col">Harga Paket</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
+                    <?php
+                    $no = 1;
+                    foreach ($paket as $pkt) { ?>
+                        <tr>
+                            <th scape="row"><?= $no++; ?></th>
+                            <td><?= $pkt->nama_paket; ?></td>
+                            <td><?= 'Rp' . number_format($pkt->harga_paket); ?></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

@@ -30,9 +30,8 @@
                             <td><?= $row['nama_paket']; ?></td>
                             <td><?= $row['harga_paket']; ?></td>
                             <td>
-                                <!-- <button type="button" class="badge badge-primary" data-toggle="modal" data-target="#ubahpaket <?= $row['id_paket']; ?>"><i class=" fas fa-edit"></i> Edit</button> -->
-                                <a href="<?= base_url('paket/updatePaket/') . $row['id_paket']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="<?= base_url('paket/hapusPaket/') . $row['id_paket']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= $judul . ' ' . $row['kode_paket']; ?> ?');" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                <a href="<?= base_url('paket/updatePaket/') . $row['kode_paket']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="<?= base_url('paket/hapusPaket/') . $row['kode_paket']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= $judul . ' ' . $row['kode_paket']; ?> ?');" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
