@@ -7,7 +7,6 @@ class konsumen extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('ModelKonsumen');
         cek_login();
     }
 
@@ -51,7 +50,7 @@ class konsumen extends CI_Controller
             // lalu di masukan ke tabel konsumen
             $query = $this->ModelKonsumen->simpanKonsumen($data);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
-            if ($query) {
+            if ($query = true) {
                 $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');
                 redirect('konsumen');
             }
@@ -107,7 +106,7 @@ class konsumen extends CI_Controller
             // lalu di masukan ke tabel konsumen
             $query = $this->ModelKonsumen->updateKonsumen($data, ['id_konsumen' => $this->input->post('id_konsumen')]);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
-            if ($query) {
+            if ($query = true) {
                 $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');
                 redirect('konsumen');
             }

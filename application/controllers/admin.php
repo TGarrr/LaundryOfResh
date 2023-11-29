@@ -14,6 +14,9 @@ class admin extends CI_Controller
     {
         $data['judul'] = 'Dashboard';
         $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['total_konsumen'] = $this->ModelAdmin->total_konsumen()->num_rows();
+        $data['transaksi_baru'] = $this->ModelAdmin->transaksi_baru()->num_rows();
+        $data['total_transaksi'] = $this->ModelAdmin->total_transaksi()->num_rows();
 
 
         $this->load->view('templates_admin/header', $data);

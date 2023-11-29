@@ -2,6 +2,7 @@
 <?php
 date_default_timezone_set('Asia/Jakarta');
 $tgl_masuk = date('Y-m-d h:i:s');
+// echo $tgl_masuk;
 ?>
 <div class="container-fluid" id="table-datatable">
 
