@@ -1,14 +1,8 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-    <?= $this->session->flashdata('pesanKsn'); ?>
+    <?= $this->session->flashdata('pesanKsn');; ?>
     <div class="row">
         <div class="col-lg-12" id="table-datatable">
-            <?php if (validation_errors()) { ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php } ?>
             <a href="" class="btn btn-warning mb-3" data-toggle="modal" data-target="#konsumenBaruModal"> + Tambah Konsumen</a>
             <table class="table table-hover">
                 <thead>

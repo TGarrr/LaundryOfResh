@@ -46,7 +46,16 @@ class paket extends CI_Controller
             $query = $this->ModelPaket->simpanPaket($data);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
-                $this->session->set_flashdata('pesanPkt', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Tambahkan!!! </div>');
+                $this->session->set_flashdata(
+                    'pesanPkt',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Data Paket!</strong> Berhasil di Tambahkan!!!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+
+                );
                 redirect('paket');
             }
         }
@@ -56,7 +65,15 @@ class paket extends CI_Controller
     {
         $where = ['kode_paket' => $this->uri->segment(3)];
         $this->ModelPaket->hapusPaket($where);
-        $this->session->set_flashdata('pesanPkt', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Hapus!!! </div>');
+        $this->session->set_flashdata(
+            'pesanPkt',
+            '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data Paket!</strong> Berhasil di Hapus!!!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>'
+        );
         redirect('paket');
     }
 
@@ -95,7 +112,16 @@ class paket extends CI_Controller
             $query = $this->ModelPaket->updatePaket($data, ['kode_paket' => $this->input->post('kode_paket')]);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
-                $this->session->set_flashdata('pesanPkt', '<div class="alert alert-success alert-message" role="alert">Data Paket Berhasil di Update!!! </div>');
+                $this->session->set_flashdata(
+                    'pesanPkt',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Data Paket!</strong> Berhasil di Ubah!!!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+
+                );
                 redirect('Paket');
             }
         }

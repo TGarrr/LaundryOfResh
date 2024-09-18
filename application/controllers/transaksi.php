@@ -52,7 +52,15 @@ class transaksi extends CI_Controller
             $query = $this->ModelTransaksi->simpanTransaksi($data);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
-                $this->session->set_flashdata('pesanTrs', '<div class="alert alert-success alert-message" role="alert">Transaksi Berhasil di Tambahkan!!! </div>');
+                $this->session->set_flashdata(
+                    'pesanTrs',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Transaksi!</strong> Berhasil di Tambahkan!!!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                );
                 redirect('transaksi');
             }
         }
@@ -65,18 +73,35 @@ class transaksi extends CI_Controller
         echo json_encode($data);
     }
 
-    public function updateStatus()
-    {
-        $kode_transaksi = $this->input->post('kode_transaksi');
-        $status = $this->input->post('status');
-        $tgl_ambil = date('Y-m-d');
+    // public function updateStatus()
+    // {
+    //     $kode_transaksi = $this->input->post('kode_transaksi');
+    //     $status = $this->input->post('status');
+    //     $tgl_ambil = date('Y-m-d');
 
-        if ($status == "Baru" or $status == "Proses") {
-            $this->ModalTransaksi->updateStatus([$kode_transaksi, $status]);
-        } else {
-            $this->ModalTransaksi->updateStatus1($kode_transaksi, $status, $tgl_ambil);
-        }
-    }
+    //     if ($status == "Baru" or $status == "Proses") {
+    //         $this->ModalTransaksi->updateStatus([$kode_transaksi, $status]);
+    //     } else {
+    //         $this->ModalTransaksi->updateStatus1($kode_transaksi, $status, $tgl_ambil);
+    //     }
+    // }
+
+    // public function updateStatus()
+    // {
+    //     $kode_transaksi = $this->input->post('kode_transaksi');
+    //     $status = $this->input->post('status');
+    //     $tgl_ambil = date('Y-m-d');
+
+    //     if (!empty($kode_transaksi) && !empty($status)) {
+    //         if ($status == "Baru" || $status == "Proses") {
+    //             $this->ModalTransaksi->updateStatus($kode_transaksi, $status);
+    //         } else {
+    //             $this->ModalTransaksi->updateStatus($kode_transaksi, $status, $tgl_ambil);
+    //         }
+    //     } else {
+    //         // Lakukan sesuatu jika kode_transaksi atau status tidak tersedia dalam POST request
+    //     }
+    // }
 
     public function updateTransaksi()
     {
@@ -111,7 +136,7 @@ class transaksi extends CI_Controller
                 'kode_konsumen'      => $this->input->post('kode_konsumen'),
                 'kode_paket'         => $this->input->post('kode_paket'),
                 'tgl_masuk'          => $this->input->post('tgl_masuk'),
-                'tgl_ambil'          => '',
+                'tgl_ambil'          => $this->input->post('tgl_ambil'),
                 'berat'              => $this->input->post('berat'),
                 'grand_total'        => $this->input->post('grand_total'),
                 'bayar'              => $this->input->post('bayar'),
@@ -121,7 +146,15 @@ class transaksi extends CI_Controller
             $query = $this->ModelTransaksi->updateTransaksi($data, ['kode_transaksi' => $this->input->post('kode_transaksi')]);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
-                $this->session->set_flashdata('pesanTrs', '<div class="alert alert-success alert-message" role="alert">Transaksi Berhasil di Update!!! </div>');
+                $this->session->set_flashdata(
+                    'pesanTrs',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Transaksi!</strong> Berhasil di ubah!!!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                );
                 redirect('transaksi');
             }
         }
@@ -149,5 +182,51 @@ class transaksi extends CI_Controller
         $this->dompdf->load_html($html);
         $this->dompdf->render();
         $this->dompdf->stream("Detail Transaksi", array('Attachment' => 0));
+    }
+
+
+    public function updateStatusTransaksi()
+    {
+        $data['judul'] = 'Edit Status Transaksi';
+        $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['konsumen'] = $this->db->get('konsumen')->result();
+        $data['paket'] = $this->db->get('paket')->result();
+        $data['kode_transaksi'] = $this->ModelTransaksi->generateKode();
+        $data['data'] = $this->ModelTransaksi->getAllDataTransaksi()->result_array();
+        $data['transaksi'] = $this->ModelTransaksi->TransaksiWhere(['kode_transaksi' => $this->uri->segment(3)])->result_array();
+        // var_dump($data['transaksi']);
+
+        $this->form_validation->set_rules('status', 'Status', 'required', [
+            'required' => 'Status harus diisi',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates_admin/header', $data);
+            $this->load->view('templates_admin/sidebar', $data);
+            $this->load->view('templates_admin/topbar', $data);
+            $this->load->view('transaksi/ubahTransaksi', $data);
+            $this->load->view('templates_admin/footer');
+        } else {
+            // menampung inputan yg ada di tambah data di masukan ke variabel data
+            $data = array(
+                'tgl_ambil'          => $this->input->post('tgl_ambil'),
+                'status'             => $this->input->post('status')
+            );
+            // lalu di masukan ke tabel transaksi
+            $query = $this->ModelTransaksi->updateStatusTransaksi($data, ['kode_transaksi' => $this->input->post('kode_transaksi')]);
+            // kondisi jika variabel query sama dengan true maka akan muncul alert
+            if ($query = true) {
+                $this->session->set_flashdata(
+                    'pesanTrs',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Status transaksi!</strong> Berhasil di ubah!!!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
+                redirect('transaksi');
+            }
+        }
     }
 }

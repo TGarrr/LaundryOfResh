@@ -2,6 +2,7 @@
 <?php
 date_default_timezone_set('Asia/Jakarta');
 $tgl_masuk = date('Y-m-d h:i:s');
+$tgl_ambil = date('Y-m-d h:i:s');
 // echo $tgl_masuk;
 ?>
 <div class="container-fluid" id="table-datatable">
@@ -9,11 +10,6 @@ $tgl_masuk = date('Y-m-d h:i:s');
     <?= $this->session->flashdata('pesanTrs'); ?>
     <div class="row">
         <div class="col-lg-12" id="table-datatable">
-            <?php if (validation_errors()) { ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php } ?>
             <a href="" class="btn btn-warning mb-3" data-toggle="modal" data-target="#TransakasiBaruModal"> + Tambah Transakasi</a>
             <table class="table table-hover">
                 <thead>
@@ -45,7 +41,8 @@ $tgl_masuk = date('Y-m-d h:i:s');
                             <td><?= 'Rp' . number_format($row['grand_total']); ?></td>
                             <td><?= $row['tgl_ambil']; ?></td>
                             <td><?= $row['bayar']; ?></td>
-                            <td>
+                            <td><?= $row['status']; ?></td>
+                            <!-- <td>
                                 <?php
                                 if ($row['status'] == "Baru") { ?>
                                     <select name="status" class="badge badge-danger status">
@@ -63,7 +60,7 @@ $tgl_masuk = date('Y-m-d h:i:s');
                                     <button class="btn btn-success btn-sm dropdown-toggle">Selesai</button>
                                 <?php }
                                 ?>
-                            </td>
+                            </td> -->
                             <td>
                                 <a href="<?= base_url('transaksi/detailTransaksi/') . $row['kode_transaksi']; ?>" class="badge badge-warning"><i class="fa fa-external-link-square"></i> Detail</a>
                                 <a href="<?= base_url('transaksi/updateTransaksi/') . $row['kode_transaksi']; ?>" class="badge badge-info"><i class="fas fa-edit"></i> Edit</a>
@@ -155,3 +152,48 @@ $tgl_masuk = date('Y-m-d h:i:s');
 <!-- Mengambil Harga dari Table Paket Menggunakan JQuery -->
 
 <!-- End of Modal Tambah Mneu -->
+
+<!-- <div class="modal fade" id="TransakasiEditStatus" tabindex="-1" role="dialog" aria-labelledby="TransakasiEditStatusLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TransaksiEditStatusLabel">Edit Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php
+            foreach ($data as $row) { ?>
+                <form method="post" action="<?= base_url('transaksi/updateTransaksi'); ?>">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" id="kode_transaksi" name="kode_transaksi" value="<?= $row['kode_transaksi']; ?>" class="form-control form-control-user" placeholder="Masukkan Kode Transaksi" readonly>
+                        </div>
+                        <div class="form-group" hidden>
+                            <input type="text" class="form-control form-control-user" name="tgl_ambil" value="<?= $tgl_ambil; ?>" placeholder="Tanggal Ambil" readonly>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control form-control-user" name="status">
+                                <?php
+                                if ($row['status'] == "Baru") { ?>
+                                    <option value="Baru" selected> Baru </option>
+                                    <option value="Sedang Proses"> Sedang Proses </option>
+                                    <option value="Selesai"> Selesai </option>
+                                <?php } else { ?>
+                                    <option value="Baru" selected> Baru </option>
+                                    <option value="Sedang Proses"> Sedang Proses </option>
+                                    <option value="Selesai"> Selesai </option>
+                                <?php }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i> Close</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Edit Status</button>
+                    </div>
+                </form>
+            <?php } ?>
+        </div>
+    </div>
+</div> -->

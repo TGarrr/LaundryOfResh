@@ -51,7 +51,15 @@ class konsumen extends CI_Controller
             $query = $this->ModelKonsumen->simpanKonsumen($data);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
-                $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');
+                $this->session->set_flashdata(
+                    'pesanKsn',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Data Konsumen!</strong> Berhasil Di Tambahkan.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
                 redirect('konsumen');
             }
         }
@@ -61,7 +69,15 @@ class konsumen extends CI_Controller
     {
         $where = ['kode_konsumen' => $this->uri->segment(3)];
         $this->ModelKonsumen->hapusKonsumen($where);
-        $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Hapus!!! </div>');
+        $this->session->set_flashdata(
+            'pesanKsn',
+            '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data Konsumen!</strong> Berhasil Di Hapus.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>'
+        );
         redirect('konsumen');
     }
 
@@ -107,7 +123,15 @@ class konsumen extends CI_Controller
             $query = $this->ModelKonsumen->updateKonsumen($data, ['kode_konsumen' => $this->input->post('kode_konsumen')]);
             // kondisi jika variabel query sama dengan true maka akan muncul alert
             if ($query = true) {
-                $this->session->set_flashdata('pesanKsn', '<div class="alert alert-success alert-message" role="alert">Data Customer Berhasil di Tambahkan!!! </div>');
+                $this->session->set_flashdata(
+                    'pesanKsn',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Data Konsumen!</strong> Berhasil Di Ubah.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
                 redirect('konsumen');
             }
         }

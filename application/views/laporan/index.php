@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <?= $this->session->flashdata('pesan'); ?>
+
     <div class="row">
         <div class="col-lg-6" id="table-datatable">
             <!-- <?php

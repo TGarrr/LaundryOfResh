@@ -8,6 +8,7 @@
             <h4 class="text-shadow my-3" data-aos="fade-up" data-aos-duration="1000">Mencuci dengan <span class="font-weight-bold">Cepat</span> dan menjaga pakaian tetap <span class="font-weight-bold">Berkualitas.</span></h4>
             <h5 class="text-shadow my-2" data-aos="fade-up" data-aos-duration="1000">Namanya juga hidup pasti banyak <span class="font-weight-bold">Cobaan</span>, kalo banyak <span class="font-weight-bold">Cucian</span> bawa aja ke <span class="font-weight-bold oleo-font">OFRESH Laundry.</span></h5>
             <a href="#paket" class="page-scroll px-3 py-2 btn btn-primary rounded-pill my-5" data-aos="fade-up" data-aos-duration="1000">Jenis Paket</a>
+
         </div>
     </div>
 </section>

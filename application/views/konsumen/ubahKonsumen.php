@@ -1,14 +1,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <?= $this->session->flashdata('pesanKsn'); ?>
-
     <div class="row">
         <div class="col-lg-6" id="table-datatable">
-            <?php if (validation_errors()) { ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php } ?>
             <?php
             foreach ($konsumen as $ksn) { ?>
                 <form action="<?= base_url('konsumen/updateKonsumen'); ?>" method="post" enctype="multipart/form-data">

@@ -90,6 +90,50 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- /.container-fluid -->
+
+<hr class="sidebar-divider">
+<!-- row table-->
+<div class="row">
+    <div class="table-responsive table-bordered col-sm-10 ml-auto mr-auto mt-2">
+        <div class="page-header">
+            <span class="fas fa-dollar text-primary mt-2 "> Data Transaksi</span>
+            <a href="<?= base_url('transaksi'); ?>"><i class="fas fa-search text-primary mt-2 float-right"> Tampilkan</i></a>
+        </div>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th scope="col" style="color: red;">#</th>
+                    <th scope="col">Kode Transakasi</th>
+                    <th scope="col">Tanggal Masuk</th>
+                    <th scope="col">Nama Customer</th>
+                    <th scope="col">Paket</th>
+                    <th scope="col">Berat (KG)</th>
+                    <th scope="col">Grand Total</th>
+                    <th scope="col">Tanggal Ambil </th>
+                    <th scope="col">Status Bayar </th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $no = 1;
+                foreach ($data as $row) { ?>
+                    <tr>
+                        <th scape="row"><?= $no++; ?></th>
+                        <td><?= $row['kode_transaksi']; ?></td>
+                        <td><?= $row['tgl_masuk']; ?></td>
+                        <td><?= $row['nama_konsumen']; ?></td>
+                        <td><?= $row['nama_paket']; ?></td>
+                        <td><?= $row['berat']; ?></td>
+                        <td><?= 'Rp' . number_format($row['grand_total']); ?></td>
+                        <td><?= $row['tgl_ambil']; ?></td>
+                        <td><?= $row['bayar']; ?></td>
+                        <td><?= $row['status']; ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>

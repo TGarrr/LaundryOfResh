@@ -41,7 +41,8 @@
 
         <?php foreach ($laporan as $lpr) { ?>
             <tr>
-                <td><?= mediumdate_indo($lpr->tgl_masuk); ?></td>
+                <!-- <td><?= mediumdate_indo($lpr->tgl_masuk); ?></td> -->
+                <td><?= $lpr->tgl_masuk; ?></td>
                 <td><?= $lpr->kode_transaksi; ?></td>
                 <td><?= $lpr->nama_konsumen; ?></td>
                 <td><?= $lpr->nama_paket; ?></td>

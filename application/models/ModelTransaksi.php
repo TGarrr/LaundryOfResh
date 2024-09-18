@@ -47,13 +47,40 @@ class ModelTransaksi extends CI_Model
         $this->db->insert('transaksi', $data);
     }
 
-    public function updateStatus($kode_transaksi = null, $status = null)
-    {
+    // public function updateStatus($kode_transaksi = null, $status = null)
+    // {
 
-        $this->db->update('transaksi', $kode_transaksi, $status);
-    }
+    //     $this->db->update('transaksi', $kode_transaksi, $status);
+    // }
+
+    // public function updateStatus($kode_transaksi = null, $status = null)
+    // {
+    //     if ($kode_transaksi !== null && $status !== null) {
+    //         $data = array('status' => $status);
+
+    //         try {
+    //             $this->db->where('kode_transaksi', $kode_transaksi);
+    //             $this->db->update('transaksi', $data);
+
+    //             if ($this->db->affected_rows() > 0) {
+    //                 return true;
+    //             } else {
+    //                 return 'No rows affected'; // Pesan jika tidak ada baris yang terpengaruh oleh update
+    //             }
+    //         } catch (Exception $e) {
+    //             return $e->getMessage(); // Mengembalikan pesan kesalahan dari query jika terjadi kesalahan
+    //         }
+    //     } else {
+    //         return 'Invalid parameters'; // Pesan jika kode_transaksi atau status null
+    //     }
+    // }
 
     public function updateTransaksi($data = null, $where = null)
+    {
+        $this->db->update('transaksi', $data, $where);
+    }
+
+    public function updateStatusTransaksi($data = null, $where = null)
     {
         $this->db->update('transaksi', $data, $where);
     }
